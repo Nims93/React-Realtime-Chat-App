@@ -1,5 +1,5 @@
 export default function ChatMessage({ imgURL, displayName, message, id }) {
-  const messageClass = 
+  // const messageClass =
 
   return (
     <div id={id} className="chat-item">
