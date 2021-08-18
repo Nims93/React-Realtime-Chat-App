@@ -10,13 +10,15 @@ export default function ChatInput({ firebase, firestore, auth }) {
     const messagesRef = firestore.collection('messages');
     const { displayName, photoURL, uid } = auth.currentUser;
 
-    console.log(displayName);
+    const localDate = Date.now();
+    const firestoreDocumentID = auth.currentUser.uid + localDate;
 
     try {
-      await messagesRef.add({
+      await messagesRef.doc(firestoreDocumentID).set({
         displayName,
         message: msg,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        localDateSeconds: localDate,
         uid,
         photoURL,
       });
