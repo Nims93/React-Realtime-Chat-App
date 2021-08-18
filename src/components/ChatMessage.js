@@ -1,9 +1,17 @@
-export default function ChatMessage({ message, id }) {
+export default function ChatMessage({ imgURL, displayName, message, id }) {
+  const messageClass = 
+
   return (
-    <div>
-      <p>{id}</p>
-      <span> / </span>
-      <p>{message}</p>
+    <div id={id} className="chat-item">
+      <img src={imgURL} className="display-pic" />
+      <p className="display-name">{displayName}</p>
+      <p className="message">{message}</p>
     </div>
   );
 }
+
+// displayName
+// message
+// createdAt
+// uid
+// photoURL

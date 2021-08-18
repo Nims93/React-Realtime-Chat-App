@@ -3,16 +3,26 @@ import ChatMessage from './ChatMessage';
 
 export default function ChatRoom({ firestore, auth }) {
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.limit(25);
+  const query = messagesRef.orderBy('createdAt').limit(50);
   const [messages] = useCollectionData(query, { idField: 'id' });
+  console.log(auth);
+  // console.log(firestore);
   console.log(messages);
   return (
-    <div>
+    <div className="chat-room">
       {messages &&
-        messages.map((msg, idx) => (
-          <ChatMessage key={idx} message={msg.message} id={msg.id} />
-        ))}
+        messages.map((msg) => {
+          console.log(msg);
+          return (
+            <ChatMessage
+              imgURL={msg.photoURL}
+              displayName={msg.displayName}
+              message={msg.message}
+              id={msg.id}
+              key={msg.id}
+            />
+          );
+        })}
     </div>
-    // <h1>yo</h1>
   );
 }

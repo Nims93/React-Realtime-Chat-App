@@ -1,9 +1,11 @@
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import ChatRoom from './ChatRoom';
+import ChatInput from './ChatInput';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyA8Qq49hTm_WtRiaaddA2S91JX09sTLKfc',
@@ -21,6 +23,7 @@ const firestore = firebase.firestore();
 
 function App() {
   const [user] = useAuthState(auth);
+  // const [aias, setAlias] = useState(null);
 
   function handleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -32,10 +35,21 @@ function App() {
       className="App"
       style={user ? { backgroundColor: 'green' } : { backgroundColor: 'red' }}
     >
-      {/* <header className="App-header"></header> */}
-      <button onClick={handleSignIn}>Sign In with Google</button>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
-      <ChatRoom firestore={firestore} auth={auth} />
+      <div className="topbar">
+        {/* {user && <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>} */}
+        <button className="sign-out" onClick={() => auth.signOut()}>
+          Sign Out
+        </button>
+      </div>
+
+      {!user && (
+        <button className="sign-in" onClick={handleSignIn}>
+          Sign In with Google
+        </button>
+      )}
+
+      <ChatRoom firebase={firebase} firestore={firestore} auth={auth} />
+      <ChatInput firebase={firebase} firestore={firestore} auth={auth} />
     </div>
   );
 }
