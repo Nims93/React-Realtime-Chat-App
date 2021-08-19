@@ -42,13 +42,21 @@ function App() {
         </button>
       </div>
 
-      {!user && (
+      {/* {!user && (
+        <button className="sign-in" onClick={handleSignIn}>
+          Sign In with Google
+        </button>
+      )} */}
+
+      {/* <ChatRoom firebase={firebase} firestore={firestore} auth={auth} /> */}
+
+      {user ? (
+        <ChatRoom firebase={firebase} firestore={firestore} auth={auth} />
+      ) : (
         <button className="sign-in" onClick={handleSignIn}>
           Sign In with Google
         </button>
       )}
-
-      <ChatRoom firebase={firebase} firestore={firestore} auth={auth} />
       <ChatInput firebase={firebase} firestore={firestore} auth={auth} />
     </div>
   );

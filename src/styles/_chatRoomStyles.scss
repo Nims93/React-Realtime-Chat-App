@@ -1,17 +1,16 @@
 .chat-room {
   height: 100%;
 
-  .chat-item {
+  .chat-item.recieved {
     padding: 0.3em 0.5em;
     display: flex;
 
     .delete-button {
       // align-self: center;
       height: 2em;
-      width: 2em;
+      width: 0;
       overflow: hidden;
       vertical-align: center;
-      width: 0;
       visibility: hidden;
     }
 
@@ -31,23 +30,73 @@
 
     .message {
       margin-left: 0.5em;
-      // display: inline-flex;
-      // flex-wrap: wrap;
+      display: inline-flex;
+      flex-wrap: wrap;
       width: 100%;
-      align-items: center;
+      align-items: flex-start;
       // overflow:
 
       .display-name {
         padding: 0.5em;
         border-radius: 20px;
-        margin-top: 20px;
         background-color: blue;
       }
 
       .content {
-        // display: block;
-        // height: 100px;
-        // margin-left: 0.5em;
+        overflow: hidden;
+        background-color: red;
+        line-height: 25px;
+        word-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
+      }
+    }
+  }
+
+  .chat-item.sent {
+    display: flex;
+
+    .delete-button {
+      order: 3;
+      height: 2em;
+      width: 0;
+      overflow: hidden;
+      vertical-align: center;
+      visibility: hidden;
+    }
+
+    &:hover .delete-button {
+      width: auto;
+      visibility: visible;
+    }
+
+    .display-pic {
+      order: 2;
+      height: 2em;
+      width: 2em;
+      border-radius: 50%;
+      object-position: center;
+      object-fit: cover;
+    }
+
+    .message {
+      order: 1;
+      margin-right: 0.5em;
+      display: inline-flex;
+      flex-wrap: wrap-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
+      width: 100%;
+
+      .display-name {
+        order: 1;
+        padding: 0.5em;
+        border-radius: 20px;
+        background-color: blue;
+      }
+
+      .content {
+        // order: 1;
         overflow: hidden;
         background-color: red;
         line-height: 25px;
