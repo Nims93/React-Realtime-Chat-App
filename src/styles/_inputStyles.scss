@@ -1,0 +1,53 @@
+.send-message-wrapper {
+  position: relative;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .send-message {
+    position: relative;
+    // top: 45%;
+    // left: 0;
+    display: flex;
+    // height: 25px;
+    width: 100%;
+    // margin: auto;
+
+    textarea {
+      position: relative;
+      bottom: 0;
+      resize: none;
+      max-height: 5rem;
+      height: 18px;
+      width: 85%;
+      border: 0;
+      outline: none;
+      align-self: center;
+      justify-self: center;
+      font-size: 16px;
+      overflow-x: hidden;
+      // overflow-y: hidden;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      scrollbar-color: red rgba(0, 0, 255, 0);
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        // display: none;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: red;
+        border-radius: 4px;
+      }
+    }
+
+    button {
+      width: 15%;
+      height: 5rem;
+      font-size: 1.5em;
+      border: 0;
+    }
+  }
+}

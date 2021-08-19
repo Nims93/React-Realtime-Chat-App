@@ -22,18 +22,16 @@ export default function ChatMessage({
 
   return (
     <div id={id} className={messageClass}>
-      <div className="delete-button" onClick={deleteMessage}>
-        Delete
-      </div>
+      {uid === auth.currentUser.uid && (
+        <div className="delete-button" onClick={deleteMessage}>
+          Delete
+        </div>
+      )}
       <img src={imgURL} className="display-pic" />
-      <p className="display-name">{displayName}</p>
-      <p className="message">{message}</p>
+      <div className="message">
+        <span className="display-name">{displayName}</span>
+        <span className="content">{message}</span>
+      </div>
     </div>
   );
 }
-
-// displayName
-// message
-// createdAt
-// uid
-// photoURL

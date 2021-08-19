@@ -40,7 +40,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
       <div className="send-message" onSubmit={sendMessageToDB}>
         <textarea
           ref={textareaRef}
-          placeholder="Enter text here..."
+          placeholder="....."
           value={inputValue}
           onInput={(e) => setInputValue(e.target.value)}
           onKeyPress={(e) => {

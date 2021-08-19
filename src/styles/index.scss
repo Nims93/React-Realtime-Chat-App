@@ -1,3 +1,6 @@
+@import './chatRoomStyles.scss';
+@import './_inputStyles';
+
 *,
 :before,
 :after {
@@ -31,80 +34,57 @@ body {
       height: 9%;
     }
 
-    .chat-room {
-      height: 100%;
+    // .chat-room {
+    //   height: 100%;
 
-      .chat-item {
-        overflow-x: hidden;
-      }
-    }
+    //   .chat-item {
+    //     padding: 0.3em 0.5em;
+    //     display: flex;
 
-    .send-message-wrapper {
-      position: relative;
-      height: 5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    //     .delete-button {
+    //       align-self: center;
+    //       width: 0;
+    //       visibility: hidden;
+    //     }
 
-      .send-message {
-        position: relative;
-        // top: 45%;
-        // left: 0;
-        display: flex;
-        // height: 25px;
-        width: 100%;
-        // margin: auto;
+    //     &:hover .delete-button {
+    //       width: auto;
+    //       visibility: visible;
+    //     }
 
-        /* p {
-          position: relative;
-          // bottom: 0;
-          // width: 200px;
-          flex: 1;
-          width: 100%;
-          min-height: 23px;
-          max-height: 80px;
-          // overflow-x: hidden;
-          // overflow-y: auto;
-          overflow-wrap: break-word;
-          word-break: break-word;
-        } */
+    //     .display-pic {
+    //       height: 2em;
+    //       width: 2em;
+    //       border-radius: 50%;
+    //       object-position: center;
+    //       object-fit: cover;
+    //       // margin-left: 0.5em;
+    //     }
 
-        textarea {
-          position: relative;
-          bottom: 0;
-          resize: none;
-          max-height: 5rem;
-          height: 18px;
-          width: 85%;
-          border: 0;
-          outline: none;
-          align-self: center;
-          justify-self: center;
-          font-size: 16px;
-          overflow-x: hidden;
-          // overflow-y: hidden;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-          scrollbar-color: red rgba(0, 0, 255, 0);
+    //     .message {
+    //       margin-left: 0.5em;
+    //       display: inline-flex;
+    //       flex-wrap: wrap;
+    //       width: 100%;
+    //       align-items: center;
+    //       // overflow:
 
-          &::-webkit-scrollbar {
-            width: 8px;
-            // display: none;
-          }
+    //       .display-name {
+    //         padding: 0.5em;
+    //         border-radius: 20px;
+    //         background-color: blue;
+    //       }
 
-          &::-webkit-scrollbar-thumb {
-            background-color: red;
-            border-radius: 4px;
-          }
-        }
-
-        button {
-          width: 15%;
-          height: 5rem;
-          font-size: 1.5em;
-          border: 0;
-        }
-      }
-    }
+    //       .content {
+    //         display: block;
+    //         // height: 100px;
+    //         // margin-left: 0.5em;
+    //         // overflow: hidden;
+    //         // word-wrap: break-word;
+    //         // white-space: normal;
+    //       }
+    //     }
+    //   }
+    // }
   }
 }

@@ -1,3 +1,121 @@
+.chat-room {
+  height: 100%;
+}
+
+.chat-room .chat-item {
+  padding: 0.3em 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chat-room .chat-item .delete-button {
+  height: 2em;
+  width: 2em;
+  overflow: hidden;
+  vertical-align: center;
+  width: 0;
+  visibility: hidden;
+}
+
+.chat-room .chat-item:hover .delete-button {
+  width: auto;
+  visibility: visible;
+}
+
+.chat-room .chat-item .display-pic {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.chat-room .chat-item .message {
+  margin-left: 0.5em;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chat-room .chat-item .message .display-name {
+  padding: 0.5em;
+  border-radius: 20px;
+  margin-top: 20px;
+  background-color: blue;
+}
+
+.chat-room .chat-item .message .content {
+  overflow: hidden;
+  background-color: red;
+  line-height: 25px;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.send-message-wrapper {
+  position: relative;
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.send-message-wrapper .send-message {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.send-message-wrapper .send-message textarea {
+  position: relative;
+  bottom: 0;
+  resize: none;
+  max-height: 5rem;
+  height: 18px;
+  width: 85%;
+  border: 0;
+  outline: none;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 16px;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scrollbar-color: red rgba(0, 0, 255, 0);
+}
+
+.send-message-wrapper .send-message textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.send-message-wrapper .send-message textarea::-webkit-scrollbar-thumb {
+  background-color: red;
+  border-radius: 4px;
+}
+
+.send-message-wrapper .send-message button {
+  width: 15%;
+  height: 5rem;
+  font-size: 1.5em;
+  border: 0;
+}
+
 *,
 :before,
 :after {
@@ -39,85 +157,5 @@ body {
 
 #root .App .topbar {
   height: 9%;
-}
-
-#root .App .chat-room {
-  height: 100%;
-}
-
-#root .App .chat-room .chat-item {
-  overflow-x: hidden;
-}
-
-#root .App .send-message-wrapper {
-  position: relative;
-  height: 5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#root .App .send-message-wrapper .send-message {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  /* p {
-          position: relative;
-          // bottom: 0;
-          // width: 200px;
-          flex: 1;
-          width: 100%;
-          min-height: 23px;
-          max-height: 80px;
-          // overflow-x: hidden;
-          // overflow-y: auto;
-          overflow-wrap: break-word;
-          word-break: break-word;
-        } */
-}
-
-#root .App .send-message-wrapper .send-message textarea {
-  position: relative;
-  bottom: 0;
-  resize: none;
-  max-height: 5rem;
-  height: 18px;
-  width: 85%;
-  border: 0;
-  outline: none;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  font-size: 16px;
-  overflow-x: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scrollbar-color: red rgba(0, 0, 255, 0);
-}
-
-#root .App .send-message-wrapper .send-message textarea::-webkit-scrollbar {
-  width: 8px;
-}
-
-#root .App .send-message-wrapper .send-message textarea::-webkit-scrollbar-thumb {
-  background-color: red;
-  border-radius: 4px;
-}
-
-#root .App .send-message-wrapper .send-message button {
-  width: 15%;
-  height: 5rem;
-  font-size: 1.5em;
-  border: 0;
 }
 /*# sourceMappingURL=index.css.map */
