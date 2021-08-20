@@ -6,6 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import ChatRoom from './ChatRoom';
 import ChatInput from './ChatInput';
+import { ReactComponent as GoogleLogo } from './../assets/GoogleLogo.svg';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyA8Qq49hTm_WtRiaaddA2S91JX09sTLKfc',
@@ -31,10 +32,7 @@ function App() {
   }
 
   return (
-    <div
-      className="App"
-      style={user ? { backgroundColor: 'green' } : { backgroundColor: 'red' }}
-    >
+    <div className="App">
       <div className="topbar">
         {/* {user && <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>} */}
         <button className="sign-out" onClick={() => auth.signOut()}>
@@ -46,16 +44,18 @@ function App() {
         <button className="sign-in" onClick={handleSignIn}>
           Sign In with Google
         </button>
-      )} */}
+      )}
 
-      {/* <ChatRoom firebase={firebase} firestore={firestore} auth={auth} /> */}
+      <ChatRoom firebase={firebase} firestore={firestore} auth={auth} /> */}
 
       {user ? (
         <ChatRoom firebase={firebase} firestore={firestore} auth={auth} />
       ) : (
-        <button className="sign-in" onClick={handleSignIn}>
-          Sign In with Google
-        </button>
+        <div className="signin-wrapper">
+          <button className="sign-in" onClick={handleSignIn}>
+            <GoogleLogo /> Sign In with Google
+          </button>
+        </div>
       )}
       <ChatInput firebase={firebase} firestore={firestore} auth={auth} />
     </div>

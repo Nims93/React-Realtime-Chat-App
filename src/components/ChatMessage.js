@@ -7,9 +7,15 @@ export default function ChatMessage({
   auth,
   messagesRef,
 }) {
-  // console.log(uid);
-  const messageClass =
-    uid === auth.currentUser.uid ? 'chat-item sent' : 'chat-item recieved';
+  console.log(uid);
+
+  let messageClass;
+  if (auth.currentUser) {
+    messageClass =
+      uid === auth.currentUser.uid ? 'chat-item sent' : 'chat-item recieved';
+  } else {
+    messageClass = 'chat-item recieved';
+  }
 
   const deleteMessage = () => {
     const docID = auth.currentUser.uid + id;

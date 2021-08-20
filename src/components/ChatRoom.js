@@ -8,7 +8,7 @@ export default function ChatRoom({ firestore, auth }) {
 
   // console.log(auth);
   // console.log(firestore);
-  console.log(messages);
+  // console.log(messages);
 
   return (
     <div className="chat-room">

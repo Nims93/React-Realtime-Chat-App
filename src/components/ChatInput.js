@@ -5,28 +5,30 @@ export default function ChatInput({ firebase, firestore, auth }) {
   const [inputValue, setInputValue] = useState('');
 
   const sendMessageToDB = async (e) => {
-    e.preventDefault();
-    const msg = inputValue;
-    const messagesRef = firestore.collection('messages');
-    const { displayName, photoURL, uid } = auth.currentUser;
+    if (auth.currentUser) {
+      e.preventDefault();
+      const msg = inputValue;
+      const messagesRef = firestore.collection('messages');
+      const { displayName, photoURL, uid } = auth.currentUser;
 
-    const localDate = Date.now();
-    const firestoreDocumentID = auth.currentUser.uid + localDate;
+      const localDate = Date.now();
+      const firestoreDocumentID = auth.currentUser.uid + localDate;
 
-    try {
-      await messagesRef.doc(firestoreDocumentID).set({
-        displayName,
-        message: msg,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        localDateSeconds: localDate,
-        uid,
-        photoURL,
-      });
-    } catch (err) {
-      console.log(err);
+      try {
+        await messagesRef.doc(firestoreDocumentID).set({
+          displayName,
+          message: msg,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          localDateSeconds: localDate,
+          uid,
+          photoURL,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
+      setInputValue('');
     }
-
-    setInputValue('');
   };
 
   useEffect(() => {
@@ -40,7 +42,9 @@ export default function ChatInput({ firebase, firestore, auth }) {
       <div className="send-message" onSubmit={sendMessageToDB}>
         <textarea
           ref={textareaRef}
-          placeholder="....."
+          placeholder={
+            auth.currentUser ? 'Say something...' : 'Sign in to send a message!'
+          }
           value={inputValue}
           onInput={(e) => setInputValue(e.target.value)}
           onKeyPress={(e) => {
@@ -48,6 +52,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
               sendMessageToDB(e);
             }
           }}
+          disabled={auth.currentUser ? false : true}
         />
         <button onClick={(e) => sendMessageToDB(e)}>💬</button>
       </div>
