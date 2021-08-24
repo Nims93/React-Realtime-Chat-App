@@ -1,7 +1,5 @@
 @import './chatRoomStyles.scss';
 @import './_inputStyles';
-@import './variables';
-
 @import url('https://fonts.googleapis.com/css2?family=Asap&family=Assistant:wght@200;300&family=Exo+2:ital,wght@1,200&family=Fira+Sans:ital,wght@1,200&family=Glory:wght@200;300&family=Karla:ital,wght@0,300;1,200&family=Source+Sans+Pro:wght@300&display=swap');
 
 *,
@@ -14,28 +12,58 @@
 
 :root {
   font-size: 10;
+  --scrollbarColor: hsla(0, 0%, 0%, 0.6);
+  --buttonColor: hsl(212, 41%, 50%);
+  --buttonBorderColor: hsl(212, 62%, 43%);
 }
 
 body {
-  font-family: 'Assistant', Arial, sans-serif;
+  font-family: 'Assistant', sans-serif;
+  //Asap, Assistant, Exo 2, Fira Sans, Glory, Karla, Source Sans Pro
 }
 
 #root {
+  width: 100vw;
   height: 100vh;
   display: flex;
 
   .App {
     height: 95%;
-    width: 400px;
-    // border: 2px solid black;
+    width: 80vw;
+    min-width: 300px;
+    border: 1px solid var(--buttonBorderColor);
+    box-shadow: 0px 0px 20px -7px var(--buttonBorderColor);
     background-color: hsl(212, 50%, 73%);
     margin: auto;
     display: flex;
     flex-direction: column;
     position: relative;
 
+    @media (max-width: 500px) {
+      width: 100%;
+      height: 100%;
+    }
+
     .topbar {
-      height: 9%;
+      align-self: center;
+      height: 7%;
+      width: 95%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // padding-bottom: 0.5em;
+      border-bottom: solid 1px hsla(0, 0%, 100%, 0.173);
+
+      .sign-out {
+        height: 90%;
+        width: 5em;
+        padding: 0 0.5em;
+        // margin: 0.2em 0;
+        background-color: var(--buttonColor);
+        border: 1px solid var(--buttonBorderColor);
+        border-radius: 3px;
+        font-size: 15px;
+      }
     }
 
     .signin-wrapper {
@@ -44,8 +72,25 @@ body {
       align-items: center;
       justify-content: center;
 
-      .signin-wrapper {
+      .sign-in {
+        background-color: var(--buttonColor);
+        display: flex;
+        justify-content: center;
+        border: 1px solid var(--buttonBorderColor);
+        padding: 0.5em;
+        border-radius: 3px;
+        font-size: 15px;
       }
+    }
+
+    button {
+      appearance: none;
+      font-family: inherit;
+    }
+
+    textarea {
+      appearance: none;
+      font-family: inherit;
     }
   }
 }

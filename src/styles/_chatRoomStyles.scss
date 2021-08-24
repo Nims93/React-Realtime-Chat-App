@@ -1,23 +1,39 @@
+//general styling for .chat-room and all children
 .chat-room {
-  height: 100%;
-  font-size: 15px;
-
-  .chat-item.recieved {
-    padding: 0.2em 0.4em;
+  .chat-item {
     display: flex;
+    // padding: 0.5em 0.4em;
+    margin: 0.5em 0.4em;
 
     .delete-button {
-      // align-self: center;
-      height: 2em;
+      align-self: flex-start;
+      flex-grow: 10;
+      margin-top: 0.25em;
+      height: 1.5em;
       width: 0;
+      border-radius: 50%;
       overflow: hidden;
-      vertical-align: center;
       visibility: hidden;
     }
 
     &:hover .delete-button {
-      width: auto;
+      width: 1.5em;
       visibility: visible;
+      // margin: auto;
+
+      svg {
+        fill: hsl(0, 100%, 33%);
+        height: 100%;
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: hsla(0, 100%, 33%, 0.219);
+      }
+
+      &:active {
+        border: 2px solid hsla(0, 100%, 33%, 0.39);
+      }
     }
 
     .display-pic {
@@ -26,90 +42,29 @@
       border-radius: 50%;
       object-position: center;
       object-fit: cover;
-      // margin-left: 0.5em;
+
+      &:hover + .delete-button {
+        width: auto;
+        visibility: visible;
+      }
     }
 
     .message {
-      // margin-left: 0.5em;
       display: inline-flex;
-      flex-wrap: wrap;
-      width: 100%;
       align-items: center;
-      // overflow:
+      flex-shrink: 5;
 
       .display-name {
-        margin-left: 0.2em;
         padding: 0.5em;
         border-radius: 20px;
-        background-color: rgb(148, 148, 150);
       }
 
       .content {
-        margin: 0.2em;
-        padding: 0.5em;
+        margin: 0 0.3em;
+        padding: 0.4em 1.5em;
         border-radius: 20px;
         overflow: hidden;
-        background-color: rgb(148, 148, 150);
-        word-wrap: break-word;
-        word-break: break-word;
-        white-space: normal;
-      }
-    }
-  }
-
-  .chat-item.sent {
-    padding: 0.2em 0.4em;
-    display: flex;
-
-    .delete-button {
-      order: 3;
-      height: 2em;
-      width: 0;
-      overflow: hidden;
-      vertical-align: center;
-      visibility: hidden;
-    }
-
-    &:hover .delete-button {
-      width: auto;
-      visibility: visible;
-    }
-
-    .display-pic {
-      order: 2;
-      height: 2em;
-      width: 2em;
-      border-radius: 50%;
-      object-position: center;
-      object-fit: cover;
-    }
-
-    .message {
-      order: 1;
-      // margin-right: 0.5em;
-      display: inline-flex;
-      // flex-wrap: wrap-reverse;
-      align-items: center;
-      justify-content: flex-end;
-      width: 100%;
-
-      .display-name {
-        order: 1;
-        align-self: flex-start;
-        margin-right: 0.2em;
-        padding: 0.5em;
-        border-radius: 20px;
-        background-color: rgb(120, 96, 255);
-      }
-
-      .content {
-        // order: 1;
-        margin: 0.2em;
-        padding: 0.5em;
-        border-radius: 20px;
-        overflow: hidden;
-        background-color: rgb(120, 96, 255);
-        // line-height: 25px;
+        line-height: 20px;
         word-wrap: break-word;
         word-break: break-word;
         white-space: normal;
@@ -118,8 +73,72 @@
   }
 }
 
+.chat-room {
+  height: 100%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+
+  .chat-item.recieved {
+    .delete-button {
+    }
+
+    .display-pic {
+      &:hover + .delete-button {
+      }
+    }
+
+    .message {
+      flex-wrap: wrap;
+
+      .display-name {
+        margin-left: 0.2em;
+        background-color: hsl(0, 0%, 87%);
+      }
+
+      .content {
+        background-color: hsl(0, 0%, 87%);
+        text-align: left;
+      }
+    }
+  }
+
+  //sent chant items
+
+  .chat-item.sent {
+    align-self: flex-end;
+
+    .delete-button {
+      order: 3;
+      flex-basis: 1;
+    }
+
+    .display-pic {
+      order: 2;
+    }
+
+    .message {
+      order: 1;
+      justify-content: flex-end;
+
+      .display-name {
+        order: 1;
+        align-self: flex-start;
+        margin-right: 0.2em;
+        background-color: hsl(224, 100%, 61%);
+      }
+
+      .content {
+        color: rgb(235, 235, 235);
+        background-color: hsl(224, 100%, 61%);
+      }
+    }
+  }
+}
+
 //scrollbar styling
 .chat-room {
+  overflow-y: scroll;
   padding-right: 8px;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbarColor);

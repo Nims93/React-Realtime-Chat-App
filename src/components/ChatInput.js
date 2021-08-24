@@ -5,7 +5,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
   const [inputValue, setInputValue] = useState('');
 
   const sendMessageToDB = async (e) => {
-    if (auth.currentUser) {
+    if (auth.currentUser && inputValue && inputValue.length <= 200) {
       e.preventDefault();
       const msg = inputValue;
       const messagesRef = firestore.collection('messages');
@@ -39,7 +39,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
 
   return (
     <div className="send-message-wrapper">
-      <div className="send-message" onSubmit={sendMessageToDB}>
+      <div className="send-message" onClick={() => textareaRef.current.focus()}>
         <textarea
           ref={textareaRef}
           placeholder={
@@ -53,23 +53,17 @@ export default function ChatInput({ firebase, firestore, auth }) {
             }
           }}
           disabled={auth.currentUser ? false : true}
+          style={
+            inputValue.length >= 200 ? { border: '2px solid #ff000080' } : null
+          }
         />
-        <button onClick={(e) => sendMessageToDB(e)}>💬</button>
+        <button
+          className="send-message-button"
+          onClick={(e) => sendMessageToDB(e)}
+        >
+          💬
+        </button>
       </div>
     </div>
   );
-}
-
-{
-  /* <textarea
-        ref={textareaRef}
-        placeholder="Enter text here..."
-        value={inputValue}
-        onInput={(e) => setInputValue(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter' && inputValue !== '') {
-            sendMessageToDB();
-          }
-        }}
-      /> */
 }
