@@ -14,6 +14,11 @@ export default function ChatRoom({ firestore, auth }) {
   // console.log(auth);
   // console.log(firestore);
   // console.log(messages);
+  // console.log('<br>');
+
+  useEffect(() => {
+    bottomDivRef.current.scrollIntoView();
+  }, []);
 
   useEffect(() => {
     if (
@@ -22,13 +27,6 @@ export default function ChatRoom({ firestore, auth }) {
       chatRoomRef.current.clientHeight
     ) {
       bottomDivRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    if (reRenders <= 1) {
-      reRenders += 1;
-      bottomDivRef.current.scrollIntoView();
     }
   }, [messages]);
 

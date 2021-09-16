@@ -1,14 +1,8 @@
 import { IoMdClose } from 'react-icons/io';
 
-export default function ChatMessage({
-  imgURL,
-  displayName,
-  message,
-  id,
-  uid,
-  auth,
-  messagesRef,
-}) {
+export default function ChatMessage(props) {
+  const { imgURL, displayName, message, id, uid, auth, messagesRef } = props;
+
   let messageClass;
   if (auth.currentUser) {
     messageClass =
@@ -26,10 +20,10 @@ export default function ChatMessage({
       console.log(err);
     }
   };
-
+  // console.log(uid);
   return (
     <div id={id} className={messageClass}>
-      {uid === auth.currentUser.uid && (
+      {auth.currentUser && uid === auth.currentUser.uid && (
         <div className="delete-button" onClick={deleteMessage}>
           <IoMdClose />
         </div>
