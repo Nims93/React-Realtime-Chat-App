@@ -17,18 +17,8 @@ function App() {
       <div className="App">
         <TopBar user={user} />
         {!user && <SignInOut className={'sign-in'} user={user} />}
-        <ChatRoom firebase={app} firestore={firestore} auth={auth} />
-
-        {/* {user ? (
-          <ChatRoom firebase={firebase} firestore={firestore} auth={auth} />
-        ) : (
-          <div className="signin-wrapper">
-            <button className="sign-in" onClick={handleSignIn}>
-              <GoogleLogo /> Sign In with Google
-            </button>
-          </div>
-        )} */}
-        <ChatInput firebase={app} firestore={firestore} auth={auth} />
+        <ChatRoom firestore={firestore} auth={auth} />
+        <ChatInput app={app} firestore={firestore} auth={auth} />
       </div>
     </ThemeContext.Provider>
   );

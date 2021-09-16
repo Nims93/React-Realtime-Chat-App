@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function ChatInput({ firebase, firestore, auth }) {
+export default function ChatInput({ app, firestore, auth }) {
   const textareaRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -18,7 +18,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
         await messagesRef.doc(firestoreDocumentID).set({
           displayName,
           message: msg,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          createdAt: app.firestore.FieldValue.serverTimestamp(),
           localDateSeconds: localDate,
           uid,
           photoURL,
