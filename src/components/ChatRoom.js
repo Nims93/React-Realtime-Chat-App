@@ -16,7 +16,7 @@ export default function ChatRoom({ firestore, auth }) {
 
   useEffect(() => {
     bottomDivRef.current.scrollIntoView();
-  }, []);
+  });
 
   useEffect(() => {
     if (
@@ -47,4 +47,3 @@ export default function ChatRoom({ firestore, auth }) {
     </div>
   );
 }
-//

@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-const app = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: 'AIzaSyA8Qq49hTm_WtRiaaddA2S91JX09sTLKfc',
   authDomain: 'realtime-react-chat-app.firebaseapp.com',
   databaseURL:
@@ -13,7 +13,6 @@ const app = firebase.initializeApp({
   appId: '1:288793514543:web:b3efa82dcd4f0fa1e1acda',
 });
 
-export default app;
-
-export const auth = app.auth();
-export const firestore = app.firestore();
+export default firebase;
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
