@@ -1,4 +1,4 @@
-import { IoMdClose } from 'react-icons/io';
+import { IoMdClose as CloseIcon } from 'react-icons/io';
 
 export default function ChatMessage(props) {
   const { imgURL, displayName, message, id, uid, auth, messagesRef } = props;
@@ -25,7 +25,7 @@ export default function ChatMessage(props) {
     <div id={id} className={messageClass}>
       {auth.currentUser && uid === auth.currentUser.uid && (
         <div className="delete-button" onClick={deleteMessage}>
-          <IoMdClose />
+          <CloseIcon />
         </div>
       )}
       <img src={imgURL} alt="avatar" className="display-pic" />

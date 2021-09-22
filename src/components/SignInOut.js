@@ -1,4 +1,3 @@
-import React from 'react';
 import firebase from 'firebase/app';
 import { auth } from './../utils/InitialiseFirebase';
 import { ReactComponent as GoogleLogo } from './../assets/GoogleLogo.svg';
