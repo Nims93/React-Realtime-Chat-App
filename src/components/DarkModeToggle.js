@@ -1,7 +1,7 @@
 import { RiMoonClearFill as MoonIcon } from 'react-icons/ri';
 import { FaSun as SunIcon } from 'react-icons/fa';
 
-export default function DarkModeToggleBtn({ theme, setTheme }) {
+export default function DarkModeToggle({ theme, setTheme }) {
   return (
     <div
       className="theme-switcher"

@@ -12,7 +12,6 @@ export default function ChatRoom({ firestore, auth }) {
   // console.log(auth);
   // console.log(firestore);
   // console.log(messages);
-  // console.log('<br>');
 
   useEffect(() => {
     bottomDivRef.current.scrollIntoView();
@@ -34,10 +33,10 @@ export default function ChatRoom({ firestore, auth }) {
         messages.map((msg) => (
           <ChatMessage
             imgURL={msg.photoURL}
-            displayName={msg.displayName}
+            displayName={auth.currentUser ? msg.displayName : null}
             message={msg.message}
             id={msg.localDateSeconds}
-            uid={msg.uid}
+            uid={auth.currentUser ? msg.uid : null}
             auth={auth}
             messagesRef={messagesRef}
             key={msg.id}
