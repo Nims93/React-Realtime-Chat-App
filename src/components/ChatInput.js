@@ -39,7 +39,11 @@ export default function ChatInput({ firebase, firestore, auth }) {
 
   return (
     <div className="send-message-wrapper">
-      <div className="send-message" onClick={() => textareaRef.current.focus()}>
+      <div
+        className="send-message"
+        style={auth.currentUser ? { cursor: 'text' } : null}
+        onClick={() => textareaRef.current.focus()}
+      >
         <textarea
           ref={textareaRef}
           placeholder={
