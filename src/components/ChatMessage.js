@@ -1,33 +1,45 @@
-import { IoMdClose as CloseIcon } from 'react-icons/io';
+import { RiDeleteBack2Fill as DeleteIcon } from 'react-icons/ri';
 
 export default function ChatMessage(props) {
-  const { imgURL, displayName, message, id, uid, auth, messagesRef } = props;
-
-  let messageClass;
-  if (auth.currentUser) {
-    messageClass =
-      uid === auth.currentUser.uid ? 'chat-item sent' : 'chat-item recieved';
-  } else {
-    messageClass = 'chat-item recieved';
-  }
+  const {
+    imgURL,
+    // displayName,
+    message,
+    localTimestamp,
+    uid,
+    auth,
+    messagesRef,
+  } = props;
 
   const deleteMessage = () => {
-    const docID = auth.currentUser.uid + id;
+    const docID = auth.currentUser.uid + localTimestamp;
 
-    try {
-      messagesRef.doc(docID).delete();
-    } catch (err) {
-      console.log(err);
+    if (
+      uid === auth.currentUser.uid ||
+      uid === process.env.REACT_APP_ADMIN_UID
+    ) {
+      try {
+        messagesRef.doc(docID).delete();
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
-  // console.log(uid);
+
   return (
-    <div id={id} className={messageClass}>
-      {auth.currentUser && uid === auth.currentUser.uid && (
-        <div className="delete-button" onClick={deleteMessage}>
-          <CloseIcon />
-        </div>
-      )}
+    <div
+      id={localTimestamp}
+      className={
+        uid === auth.currentUser?.uid ? 'chat-item sent' : 'chat-item recieved'
+      }
+    >
+      {auth.currentUser &&
+        (uid === auth.currentUser.uid ||
+          uid === process.env.REACT_APP_ADMIN_UID) && (
+          <div className="delete-button" onClick={deleteMessage}>
+            <DeleteIcon />
+          </div>
+        )}
       <img src={imgURL} alt="avatar" className="display-pic" />
       <div className="message">
         {/* <span className="display-name">{displayName}</span> */}

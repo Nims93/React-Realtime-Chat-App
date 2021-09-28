@@ -33,7 +33,7 @@ export default function ChatInput({ firebase, firestore, auth }) {
 
   useEffect(() => {
     textareaRef.current.style.height = '0px';
-    const scrollHeight = textareaRef.current.scrollHeight;
+    const scrollHeight = textareaRef.current.scrollHeight + 1;
     textareaRef.current.style.height = scrollHeight + 'px';
   }, [inputValue]);
 

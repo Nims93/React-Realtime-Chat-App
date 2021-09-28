@@ -1,33 +1,37 @@
 //general styling for .chat-room and all children
 .chat-room {
+  height: 100%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+
   .chat-item {
     display: flex;
     margin: 0.5em 0.4em;
 
     .delete-button {
       align-self: flex-start;
-      flex-grow: 10;
-      margin-top: 0.25em;
-      height: 1.5em;
+      margin-top: 0.15em;
+      height: 1.7em;
       width: 0;
       border-radius: 50%;
       overflow: hidden;
-      visibility: hidden;
-    }
-
-    &:hover .delete-button {
-      width: 1.5em;
-      visibility: visible;
-      // margin: auto;
+      transition: width 0.1s ease-in-out, margin 0.1s ease-in-out;
 
       svg {
         fill: hsl(0, 100%, 33%);
         height: 100%;
         width: 100%;
       }
+    }
+
+    &:hover .delete-button {
+      width: 1.7em;
 
       &:hover {
-        background-color: hsla(0, 100%, 33%, 0.219);
+        // background-color: hsla(0, 100%, 33%, 0.219);
+        transform: scale(1.15);
+        transition: transform 0.1s ease-in-out;
       }
 
       &:active {
@@ -73,19 +77,21 @@
   }
 }
 
-//recieved chat messages
 .chat-room {
-  height: 100%;
-  font-size: 15px;
-  display: flex;
-  flex-direction: column;
-
+  //recieved chat messages
   .chat-item.recieved {
+    align-self: flex-start;
+
     .delete-button {
+      transform: rotate(180deg);
     }
 
-    .display-pic {
-      &:hover + .delete-button {
+    &:hover .delete-button {
+      margin-right: 0.3em;
+      transform: rotate(180deg);
+
+      &:hover {
+        transform: rotate(180deg) scale(1.15);
       }
     }
 
@@ -106,13 +112,15 @@
   }
 
   //sent chat items
-
   .chat-item.sent {
     align-self: flex-end;
 
     .delete-button {
       order: 3;
-      flex-basis: 1;
+    }
+
+    &:hover .delete-button {
+      margin-left: 0.3em;
     }
 
     .display-pic {
@@ -139,8 +147,8 @@
 
 //scrollbar styling
 .chat-room {
-  overflow-y: scroll;
-  padding-right: 8px;
+  overflow-y: auto;
+  padding-right: 5px;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbarColor);
 

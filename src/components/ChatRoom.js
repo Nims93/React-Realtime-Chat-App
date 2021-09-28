@@ -35,7 +35,7 @@ export default function ChatRoom({ firestore, auth }) {
             imgURL={msg.photoURL}
             displayName={auth.currentUser ? msg.displayName : null}
             message={msg.message}
-            id={msg.localDateSeconds}
+            localTimestamp={msg.localDateSeconds}
             uid={auth.currentUser ? msg.uid : null}
             auth={auth}
             messagesRef={messagesRef}

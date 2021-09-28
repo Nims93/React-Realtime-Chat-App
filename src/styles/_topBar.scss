@@ -1,7 +1,7 @@
 .topbar {
   align-self: center;
   position: relative;
-  height: 7%;
+  height: 6em;
   width: 95%;
   display: flex;
   justify-content: center;
@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     svg {
       height: 2.5em;
       width: 2.5em;
@@ -27,11 +28,9 @@
   }
 
   .sign-out {
-    height: 90%;
-    height: 2.5em;
+    height: 80%;
     width: 5em;
     padding: 0 0.5em;
-    // margin: 0.2em 0;
     background-color: var(--auth-btn);
     border: 1px solid var(--auth-btn-border);
     border-radius: 3px;
