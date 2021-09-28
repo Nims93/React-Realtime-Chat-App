@@ -8,16 +8,31 @@ exports.filterBadWords = functions.firestore
   .document('messages/{docID}')
   .onCreate((doc, context) => {
     const filter = new Filter();
-    const { message, uid } = doc.data();
+    const { message } = doc.data();
 
     if (filter.isProfane(message)) {
-      console.log('bad word found');
       return doc.ref.update({
         message: '[message was deleted for profanity 🤐]',
       });
     }
-    console.log('no bad word found');
+
     return null;
+  });
+
+exports.incrementUserWrites = functions.firestore
+  .document('messages/{docID}')
+  .onCreate((doc, context) => {
+    const { uid } = doc.data();
+    const uidDocRef = admin.firestore().collection('users').doc(uid);
+
+    uidDocRef.get().then((doc) => {
+      if (doc.exists) {
+        const increment = admin.firestore.FieldValue.increment(1);
+        return uidDocRef.update({ writes: increment });
+      } else {
+        return uidDocRef.set({ writes: 1 });
+      }
+    });
   });
 
 // // Create and Deploy Your First Cloud Functions
