@@ -12,7 +12,7 @@ export default function ChatMessage(props) {
   } = props;
 
   const deleteMessage = () => {
-    const docID = auth.currentUser.uid + localTimestamp;
+    const docID = uid + localTimestamp;
 
     if (
       uid === auth.currentUser.uid ||
