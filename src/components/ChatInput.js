@@ -8,23 +8,45 @@ export default function ChatInput({ firebase, firestore, auth }) {
     if (auth.currentUser && inputValue && inputValue.length <= 200) {
       e.preventDefault();
       const msg = inputValue;
-      const messagesRef = firestore.collection('messages');
       const { displayName, photoURL, uid } = auth.currentUser;
 
-      const localDate = Date.now();
-      const firestoreDocumentID = auth.currentUser.uid + localDate;
-
       try {
-        await messagesRef.doc(firestoreDocumentID).set({
-          displayName,
-          message: msg,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          localDateSeconds: localDate,
-          uid,
-          photoURL,
+        await firestore.runTransaction(async (transaction) => {
+          const increment = firebase.firestore.FieldValue.increment(1);
+          const serverTimestamp =
+            firebase.firestore.FieldValue.serverTimestamp();
+          const uidDocRef = firestore.collection('users').doc(uid);
+          const bannedDocRef = firestore.collection('banned').doc(uid);
+          const uidDoc = await transaction.get(uidDocRef);
+
+          if (uidDoc.exists) {
+            uidDoc.data().writes >= 49
+              ? transaction.set(bannedDocRef, {})
+              : transaction.update(uidDocRef, { writes: increment });
+          } else {
+            transaction.set(uidDocRef, {
+              writes: 1,
+              displayName,
+              createdAt: serverTimestamp,
+              photoURL,
+            });
+          }
+
+          const localDate = Date.now();
+          const docID = auth.currentUser.uid + localDate;
+          const messageDocRef = firestore.collection('messages').doc(docID);
+
+          transaction.set(messageDocRef, {
+            displayName,
+            message: msg,
+            createdAt: serverTimestamp,
+            localDateSeconds: localDate,
+            uid,
+            photoURL,
+          });
         });
-      } catch (err) {
-        console.log(err);
+      } catch (e) {
+        console.error(e);
       }
 
       setInputValue('');

@@ -3,7 +3,6 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
 admin.initializeApp();
-const db = admin.firestore();
 
 exports.filterBadWords = functions.firestore
   .document('messages/{docID}')
@@ -18,19 +17,21 @@ exports.filterBadWords = functions.firestore
     }
   });
 
-exports.incrementUserWrites = functions.firestore
-  .document('messages/{docID}')
-  .onCreate(async (doc, context) => {
-    const { uid } = doc.data();
-    const uidDoc = await db.collection('users').doc(uid).get();
+// const db = admin.firestore();
 
-    if (uidDoc.exists) {
-      let payload =
-        uidDoc.data().writes >= 50
-          ? { banned: true }
-          : { writes: admin.firestore.FieldValue.increment(1) };
-      await uidDoc.ref.update(payload);
-    } else {
-      await uidDoc.ref.set({ writes: 1, banned: false });
-    }
-  });
+// exports.incrementUserWrites = functions.firestore
+//   .document('messages/{docID}')
+//   .onCreate(async (doc, context) => {
+//     const { uid } = doc.data();
+//     const uidDoc = await db.collection('users').doc(uid).get();
+
+//     if (uidDoc.exists) {
+//       let payload =
+//         uidDoc.data().writes >= 50
+//           ? { banned: true }
+//           : { writes: admin.firestore.FieldValue.increment(1) };
+//       await uidDoc.ref.update(payload);
+//     } else {
+//       await uidDoc.ref.set({ writes: 1, banned: false });
+//     }
+//   });
