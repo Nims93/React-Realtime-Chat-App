@@ -5,7 +5,7 @@ This is a chat app that updates in realtime similar to something like whatsapp, 
 ## Features
 
 - User authentication with googles Auth API
-- Creating database, reading and deleting firebase database entries
+- Creating, reading, updating and deleting firebase database entries
 - Theme toggle switching from dark to light mode
 
 ## What I learned
